@@ -4,11 +4,10 @@ program TpN2AyED;
 uses crt;
 var OP:integer     ;
 const ;
-begin
 procedure Juegos;
 procedure Calculos;
 procedure CodigodeBarras;
-
+begin
 writeln('Menu De Opciones');
 writeln('1-Juegos');
 writeln('2-Calculos');
