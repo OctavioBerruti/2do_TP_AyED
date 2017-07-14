@@ -2,7 +2,7 @@
 program TpN2AyED;
 uses crt;
 var OP:integer;
-function Juegos(Palab,Resp:string):string;
+function Juegos;
 function Calculos;
 function CodigodeBarras;
 begin
