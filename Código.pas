@@ -8,6 +8,7 @@ var arreglo:array[1..2,1..11] of char;
     i: integer;
  begin
   i:=1;
+  caracter:='a';
   writeln('Ingrese una palabra de maximo 10  caracteres y al finalizar ingrese "/"');
   while (caracter<>'/') and (i<>11) do
    begin 
