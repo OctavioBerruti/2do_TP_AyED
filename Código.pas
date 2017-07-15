@@ -8,8 +8,7 @@ var arreglo:array[1..2,1..11] of char;
     i: integer;
  begin
   i:=1;
-  caracter:='';
-  arreglo[1,i]='';
+
   writeln('Ingrese una palabra de maximo 10  caracteres y al finalizar ingrese "/"');
   while (caracter<>'/') and (i<>11) do
    begin 
@@ -22,8 +21,8 @@ var arreglo:array[1..2,1..11] of char;
   end 
 
  end;
-function Calculos();
-function CodigodeBarras();
+procedure Calculos;
+procedure CodigodeBarras;
 begin
 writeln('Menu De Opciones');
 writeln('1-Juegos');
@@ -35,7 +34,7 @@ readln(OP);
 
 case OP of 
 1:Juegos;
-2:Calculos();
-3:CodigodeBarras();
-readkey
+2:Calculos;
+3:CodigodeBarras;
+readkey;
 end.
