@@ -2,7 +2,7 @@
 program TpN2AyED(input,output);
 uses crt;
 var OP:integer;
-function Juegos();
+procedure Juegos;
 var arreglo:array[1..2,1..11] of char;
     caracter: char;
     i: integer;
@@ -34,7 +34,7 @@ while OP<>4 do
 readln(OP);
 
 case OP of 
-1:Juegos();
+1:Juegos;
 2:Calculos();
 3:CodigodeBarras();
 readkey
