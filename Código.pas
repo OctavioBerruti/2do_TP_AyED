@@ -7,36 +7,55 @@ var OP:integer;
 
 procedure Juegos;
 var arreglos: array[1..2,1..11] of char;
-    caracteres: char;
-    i:integer;
+    caracteres,letra: char;
+    i,p,aciertos,m,acierto,o,h,ingreso:integer;
 begin
+     for m:=1 to 11  do arreglos[2,m]:='*';
     i:=1;
+    o:=0;
+    aciertos:=1;
+    ingreso:=0;
   arreglos[1,i]:='a';
-  writeln('Ingrese una palabra de maximo 10  caracteres y al finalizar ingrese "/"');
+  clrscr; 
+  writeln('Ingrese una palabra de maximo 10  caracteres o ingrese "/" para finalizar');
  while (caracteres<>'/') and (i<>11) do
-   begin 
+   begin
    readln(caracteres);
+   clrscr;
+   for p:=1 to i  do writeln('*');
    arreglos[1,i]:=caracteres;
    i:=i+1;
-  end
+  end;
+  clrscr;
+ while (o<>7) and (aciertos<>(i-1)) do begin
+   writeln('Ingrese una letra');
+   readln(letra);
+   clrscr;
+          for h:=1 to (i-1)  do begin
+           if letra=arreglos[2,h] then ingreso:=1;
+         end;
+         if ingreso=0 then begin
+       for h:=1 to (i-1)  do begin
+           if letra=arreglos[1,h] then begin
+            acierto:=1;
+            aciertos:=aciertos+1;
+            arreglos[2,h]:=arreglos[1,h];
+           end
+         end;
+           if acierto=1 then begin
+           writeln('acertaste!');
+           end
+           else begin
+           writeln('desacertaste');
+           o:=o+1;
+           end;
+            end
+            else writeln('ya ingresaste esa letra');
+           acierto:=0;
+           ingreso:=0;
+       writeln('la palabra es');
+       for m:=1 to (i-2)  do write(arreglos[2,m]);
+       writeln();
+ end
 
 end;
-
-
-
-
-begin
-     OP:=0;
-     writeln('Menu De Opciones');
-     writeln('1-Juegos');
-     writeln('2-Calculos');
-     writeln('3-Codigo de Barras/QR');
-     writeln('4-Fin');
-     readln(OP);
-     case OP of 1:Juegos;
-                end;
-
-
-
-     c:=Readkey;
-end.
