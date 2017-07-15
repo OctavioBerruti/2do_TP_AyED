@@ -27,12 +27,12 @@ writeln('1-Juegos');
 writeln('2-Calculos');
 writeln('3-Codigo de Barras/QR');
 writeln('4-Fin');
-readln(OP);
 while OP<>4 do
+readln(OP);
+
 case OP of 
 1:Juegos();
 2:Calculos();
 3:CodigodeBarras();
-readln(OP);
 readkey
 end.
