@@ -3,13 +3,13 @@ program TpN2AyED(input,output);
 uses crt;
 var OP:integer;
 function Juegos();
-var arrrglo:array[0..1,0..10] of char;
+var arreglo:array[0..1,0..10] of char;
     caracter: char;
     i: integer;
  begin
   i:=0;
   writeln('Ingrese una palabra de maximo 10  caracteres y al finalizar ingrese "/"');
-  while caracter='/' or i=10 do
+  while (caracter<>'/') and (i<>10) do
    begin 
    read(caracter);
    arreglo[0,i]:=caracter;
