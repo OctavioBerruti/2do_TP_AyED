@@ -6,11 +6,12 @@ var OP:integer;
 
 
 procedure Juegos;
-var arreglos: array[1..2,1..11] of char;
+var arreglos: array[1..3,1..11] of char;
     caracteres,letra: char;
     i,p,aciertos,m,acierto,o,h,ingreso:integer;
 begin
      for m:=1 to 11  do arreglos[2,m]:='*';
+     for m:=1 to 8  do arreglos[3,m]:=' ';
     i:=1;
     o:=0;
     aciertos:=1;
@@ -32,7 +33,7 @@ begin
    readln(letra);
    clrscr;
           for h:=1 to (i-1)  do begin
-           if letra=arreglos[2,h] then ingreso:=1;
+           if (letra=arreglos[2,h]) or (letra=arreglos[3,h])   then ingreso:=1;
          end;
          if ingreso=0 then begin
        for h:=1 to (i-1)  do begin
@@ -47,6 +48,7 @@ begin
            end
            else begin
            writeln('desacertaste');
+           arreglos[3,o+1]:=letra;
            o:=o+1;
            end;
             end
@@ -56,6 +58,30 @@ begin
        writeln('la palabra es');
        for m:=1 to (i-2)  do write(arreglos[2,m]);
        writeln();
+         write('ingresaste erroneamente: ');
+         for h:=1 to o+1 do write(arreglos[3,h],' ');
+         writeln();
+         writeln('Te quedan ', 7-o, ' intentos');
+         writeln();
  end
 
 end;
+
+
+
+
+begin
+     OP:=0;
+     writeln('Menu De Opciones');
+     writeln('1-Juegos');
+     writeln('2-Calculos');
+     writeln('3-Codigo de Barras/QR');
+     writeln('4-Fin');
+     readln(OP);
+     case OP of 1:Juegos;
+                end;
+
+
+
+     c:=Readkey;
+end.
