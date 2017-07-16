@@ -6,10 +6,18 @@ var OP:integer;
 
 
 procedure Juegos;
-var arreglos: array[1..3,1..11] of char;
+var muneco: array[1..6] of string;
+     arreglos: array[1..3,1..11] of char;
     caracteres,letra: char;
     i,p,aciertos,m,acierto,o,h,ingreso:integer;
 begin
+      muneco[1]:=' O';
+      muneco[2]:='/';
+      muneco[3]:='\';
+      muneco[4]:='|';
+      muneco[5]:='/';
+      muneco[6]:=' \';
+
      for m:=1 to 11  do arreglos[2,m]:='*';
      for m:=1 to 8  do arreglos[3,m]:=' ';
     i:=1;
@@ -45,16 +53,86 @@ begin
          end;
            if acierto=1 then begin
            writeln('acertaste!');
+            if o=1 then writeln(muneco[1]);
+           if o=2 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           end;
+           if o=3 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           write(muneco[4]);
+           end;
+           if o=4 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           write(muneco[4]);
+           writeln(muneco[3]);
+           end;
+           if o=5 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           write(muneco[4]);
+           writeln(muneco[3]);
+           write(muneco[5]);
+           end;
+            if o=6 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           write(muneco[4]);
+           writeln(muneco[3]);
+           write(muneco[5]);
+           write(muneco[6]);
+           end;
            end
            else begin
            writeln('desacertaste');
            arreglos[3,o+1]:=letra;
+
            o:=o+1;
+           if o=1 then writeln(muneco[1]);
+           if o=2 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           end;
+           if o=3 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           write(muneco[4]);
+           end;
+           if o=4 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           write(muneco[4]);
+           writeln(muneco[3]);
+           end;
+           if o=5 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           write(muneco[4]);
+           writeln(muneco[3]);
+           write(muneco[5]);
+           end;
+            if o=6 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           write(muneco[4]);
+           writeln(muneco[3]);
+           write(muneco[5]);
+           write(muneco[6]);
+           end;
+
+
+
+
+
+
            end;
             end
             else writeln('ya ingresaste esa letra');
            acierto:=0;
            ingreso:=0;
+           writeln();
        writeln('la palabra es');
        for m:=1 to (i-2)  do write(arreglos[2,m]);
        writeln();
