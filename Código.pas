@@ -58,6 +58,65 @@ begin
        writeln('la palabra es');
        for m:=1 to (i-2)  do write(arreglos[2,m]);
        writeln();
+          if aciertos=(i-1) then begin
+           writeln('GANASTE EL JUEGO, FELICIDADES');
+           end
+          else begin
+          if  o=7 then begin
+             clrscr;
+            writeln('PERDISTE EL JUEGO, LA PALABRA ERA: ');
+            for m:=1 to (i-2)  do write(arreglos[1,m]);
+           end
+
+          else begin
+         write('ingresaste erroneamente: ');
+         for h:=1 to o+1 do write(arreglos[3,h],' ');
+         writeln();
+         writeln('Te quedan ', 7-o, ' intentos');
+         writeln();
+         end
+         end;
+
+ end
+
+end;
+
+
+
+
+begin
+     OP:=0;
+     writeln('Menu De Opciones');
+     writeln('1-Juegos');
+     writeln('2-Calculos');
+     writeln('3-Codigo de Barras/QR');
+     writeln('4-Fin');
+     readln(OP);
+     case OP of 1:Juegos;
+                end;
+
+
+
+     c:=Readkey;
+end.
+            arreglos[2,h]:=arreglos[1,h];
+           end
+         end;
+           if acierto=1 then begin
+           writeln('acertaste!');
+           end
+           else begin
+           writeln('desacertaste');
+           arreglos[3,o+1]:=letra;
+           o:=o+1;
+           end;
+            end
+            else writeln('ya ingresaste esa letra');
+           acierto:=0;
+           ingreso:=0;
+       writeln('la palabra es');
+       for m:=1 to (i-2)  do write(arreglos[2,m]);
+       writeln();
          write('ingresaste erroneamente: ');
          for h:=1 to o+1 do write(arreglos[3,h],' ');
          writeln();
