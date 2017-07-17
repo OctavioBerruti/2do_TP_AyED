@@ -3,6 +3,7 @@ program TpN2AyED(input,output);
 uses crt;
 var OP:integer;
     c:char;
+    NUM:real;
 
 
 procedure Juegos;
@@ -29,9 +30,10 @@ begin
   writeln('Ingrese una palabra de maximo 10  caracteres o ingrese "/" para finalizar');
  while (caracteres<>'/') and (i<>11) do
    begin
+
    readln(caracteres);
    clrscr;
-   for p:=1 to i  do writeln('*');
+   for p:=1 to i  do write('*');
    arreglos[1,i]:=caracteres;
    i:=i+1;
   end;
@@ -159,11 +161,74 @@ begin
 
 end;
 
+function pesos(NUM: real) : string ;
+var unidades, decenas, centenas, milares,entera : integer;
+    divisor:integer;
+    unidad: array[1..9] of string;
+    decena: array[0..9] of string;
+    centena: array[0..9] of string;
+    milar: array[1..9] of string;
+begin
+     unidad[1]:='uno';
+     unidad[2]:='dos';
+     unidad[3]:='tres';
+     unidad[4]:='cuatro';
+     unidad[5]:='cinco';
+     unidad[6]:='seis';
+     unidad[7]:='siete';
+     unidad[8]:='ocho';
+     unidad[9]:='nueve';
+     decena[0]:='diez';
+     decena[1]:=;
+     decena[2]:='veinti';
+     decena[3]:='treinta';
+     decena[4]:='cuarenta';
+     decena[5]:='cincuenta';
+     decena[6]:='sesenta';
+     decena[7]:='setenta';
+     decena[8]:='ochenta';
+     decena[9]:='noventa';
+     centena[0]:='cien';
+     centena[1]:='ciento';
+     centena[2]:='doscientos';
+     centena[3]:='trescientos';
+     centena[4]:='cuatrocientos';
+     centena[5]:='quinientos';
+     centena[6]:='seiscientos';
+     centena[7]:='setecientos';
+     centena[8]:='ochocientos';
+     centena[9]:='novecientos';
+     milar[1]:='mil';
+     milar[1]:='dos mil';
+     milar[1]:='tres mil';
+     milar[1]:='cuatro mil';
+     milar[1]:='cinco mil';
+     milar[1]:='seis mil';
+     milar[1]:='siete mil';
+     milar[1]:='ocho mil';
+     milar[1]:='nueve mil';
+
+     entera:=trunc(NUM);
+     divisor:=10;
+     unidades:=0;
+     decenas:=0;
+     centenas:=0;
+     milares:=0;
+     unidades:=entera mod divisor;
+     decenas:=((entera)div 10) mod divisor;
+     centenas:=((entera)div(100))mod divisor;
+     milares:=(entera div 1000)mod divisor;
+     writeln(milares,centenas,decenas,unidades);
+end;
+
+
+
 
 
 
 begin
      OP:=0;
+     NUM:=0;
      writeln('Menu De Opciones');
      writeln('1-Juegos');
      writeln('2-Calculos');
@@ -171,6 +236,11 @@ begin
      writeln('4-Fin');
      readln(OP);
      case OP of 1:Juegos;
+                2: begin
+                writeln('Ingrese un numero real entre 0 y 9999');
+                readln(NUM);
+                pesos(NUM);
+                end
                 end;
 
 
