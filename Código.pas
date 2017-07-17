@@ -253,7 +253,7 @@ begin
  while (caracteres<>'/') and (i<>11) do
    begin
 
-   readln(caracteres);
+   caracteres:=readkey;
    clrscr;
    for p:=1 to i  do write('*');
    arreglos[1,i]:=caracteres;
@@ -510,24 +510,4 @@ end.
 
 
 
-begin
-     OP:=0;
-     NUM:=0;
-     writeln('Menu De Opciones');
-     writeln('1-Juegos');
-     writeln('2-Calculos');
-     writeln('3-Codigo de Barras/QR');
-     writeln('4-Fin');
-     readln(OP);
-     case OP of 1:Juegos;
-                2: begin
-                writeln('Ingrese un numero real entre 0 y 9999');
-                readln(NUM);
-                pesos(NUM);
-                end
-                end;
 
-
-
-     c:=Readkey;
-end.
