@@ -504,21 +504,13 @@ end;
 
 
  procedure CodigoDeBarras;
- var Transf:array[1..9] of integer;
-    codi:array[1..7] of integer;
+ var codi:array[1..8] of integer;
+    CDB:array[1..8] of integer;
      cod,apor,cdb1:string ;
-     i,num,x,a,b,DV:integer;
+     i,num,x,a,b,DV,C,CDBF:integer;
+     Co:real;
    begin
    i:=0;
-   Transf[1]:=0001;
-   Transf[2]:=0010;
-   Transf[3]:=0011;
-   Transf[4]:=0100;
-   Transf[5]:=0101;
-   Transf[6]:=0110;
-   Transf[7]:=0111;
-   Transf[8]:=1000;
-   Transf[9]:=1001;
    writeln('Ingrese Codigo Unico de 3 cifras de su Empresa');
     readln(cod);
     writeln('Ingrese Aporte de 4 cifras, fin de datos /');
@@ -537,14 +529,31 @@ end;
 
         a:=codi[2]+codi[4]+codi[6];
         b:=codi[1]+codi[3]+codi[5]+codi[7];
-        DV:=(ABS(a-b) MOD 10);
+        C:=a-b;
+        DV:=(ABS(C) MOD 10);
+        codi[8]:=DV;
+        CDBF:=(num*10)+DV;
+           for i:=1 to 8 do
+           begin
+           case codi[i] of
+           1:CDB[i]:=0001;
+           2:CDB[i]:=0010;
+           3:CDB[i]:=0011;
+           4:CDB[i]:=0100;
+           5:CDB[i]:=0101;
+           6:CDB[i]:=0110;
+           7:CDB[i]:=0111;
+           8:CDB[i]:=1000;
+           9:CDB[i]:=1001;
+           end;
+           end;
 
 
+        writeln(Codi[1],Codi[2],Codi[3],Codi[4],Codi[5],Codi[6],Codi[7],Codi[8]);
+        writeln(CDB[1],CDB[2],CDB[3],CDB[4],CDB[5],CDB[6],CDB[7],CDB[8]);
 
-
-
-
-
+    end;
+  end;
 
 
 
@@ -557,22 +566,29 @@ begin
      writeln('2-Calculos');
      writeln('3-Codigo de Barras/QR');
      writeln('4-Fin');
+
      readln(OP);
-     case OP of 1:Juegos;
+          case OP of
+                1:Juegos;
                 2: begin
                 writeln('Ingrese un numero real entre 0 y 9999');
                 readln(NUM);
                 pesos(NUM);
-                end;
+
 
                 end;
                 3:CodigoDeBarras;
+                end;
 
 
 
-     c:=Readkey;
+     Readkey;
+
+
 
 end.
+
+
 
 
 
