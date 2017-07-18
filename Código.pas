@@ -226,7 +226,7 @@ end;
  var Transf:array[1..9] of integer;
     codi:array[1..7] of integer;
      cod,apor,cdb1:string ;
-     i,num,x:integer;
+     i,num,x,a,b,DV:integer;
    begin
    i:=0;
    Transf[1]:=0001;
@@ -246,8 +246,17 @@ end;
     readln(apor);
     cdb1:=cod+apor;
         val(cdb1,num,x);
+        codi[1]:=TRUNC(num/1000000);
+        codi[2]:=TRUNC(num/100000)-codi[1]*10;
+        codi[3]:=TRUNC(num/10000)-codi[1]*100-codi[2]*10;
+        codi[4]:=TRUNC(num/1000)-codi[1]*1000-codi[2]*100-codi[3]*10;
+        codi[5]:=TRUNC(num/100)-codi[1]*10000-codi[2]*1000-codi[3]*100-codi[4]*10;
+        codi[6]:=TRUNC(num/10)-codi[1]*100000-codi[2]*10000-codi[3]*1000-codi[4]*100-codi[5]*10;
+        codi[7]:=TRUNC(num/1)-codi[1]*1000000-codi[2]*100000-codi[3]*10000-codi[4]*1000-codi[5]*100-codi[6]*10;
 
-
+        a:=codi[2]+codi[4]+codi[6];
+        b:=codi[1]+codi[3]+codi[5]+codi[7];
+        DV:=(ABS(a-b) MOD 10);
 
 
 
@@ -283,6 +292,8 @@ begin
      c:=Readkey;
 
 end.
+
+
 
 
 
