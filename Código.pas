@@ -505,9 +505,9 @@ end;
 
  procedure CodigoDeBarras;
  var codi:array[1..8] of integer;
-    CDB:array[1..8] of integer;
-     cod,apor,cdb1:string ;
-     i,num,x,a,b,DV,C,CDBF:integer;
+    CDB:array[1..8] of string;
+     cod,apor,cdb1,CB:string ;
+     i,num,x,a,b,DV,C,CDBF,g:integer;
      Co:real;
    begin
    i:=0;
@@ -533,20 +533,23 @@ end;
         DV:=(ABS(C) MOD 10);
         codi[8]:=DV;
         CDBF:=(num*10)+DV;
-           for i:=1 to 8 do
-           begin
-           case codi[i] of
-           1:CDB[i]:=0001;
-           2:CDB[i]:=0010;
-           3:CDB[i]:=0011;
-           4:CDB[i]:=0100;
-           5:CDB[i]:=0101;
-           6:CDB[i]:=0110;
-           7:CDB[i]:=0111;
-           8:CDB[i]:=1000;
-           9:CDB[i]:=1001;
+        Str(CDBF,CB);
+        for i:=1 to 8 do
+        begin
+        case CB[i] of
+           '1':CDB[i]:='0001';
+           '2':CDB[i]:='0010';
+           '3':CDB[i]:='0011';
+           '4':CDB[i]:='0100';
+           '5':CDB[i]:='0101';
+           '6':CDB[i]:='0110';
+           '7':CDB[i]:='0111';
+           '8':CDB[i]:='1000';
+           '9':CDB[i]:='1001';
            end;
-           end;
+        end;
+
+
 
 
         writeln(Codi[1],Codi[2],Codi[3],Codi[4],Codi[5],Codi[6],Codi[7],Codi[8]);
