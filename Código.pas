@@ -165,11 +165,14 @@ end;
 function pesos(NUM: real) : string ;
 var unidades, decenas, centenas, milares,entera : integer;
     divisor:integer;
-    unidad: array[1..9] of string;
+    unidad: array[0..9] of string;
     decena: array[0..9] of string;
     centena: array[0..9] of string;
     milar: array[1..9] of string;
+    espec: array[1..6] of string;
+    final: string;
 begin
+     unidad[0]:='cero';
      unidad[1]:='uno';
      unidad[2]:='dos';
      unidad[3]:='tres';
@@ -179,9 +182,18 @@ begin
      unidad[7]:='siete';
      unidad[8]:='ocho';
      unidad[9]:='nueve';
+
+
+     espec[1]:='once';
+     espec[2]:='doce';
+     espec[3]:='trece';
+     espec[4]:='catorce';
+     espec[5]:='quince';
+     espec[6]:='veinte';
+
      decena[0]:='diez';
-     decena[1]:='jeje';
-     decena[2]:='veinte';
+     decena[1]:='dieci';
+     decena[2]:='veinti';
      decena[3]:='treinta';
      decena[4]:='cuarenta';
      decena[5]:='cincuenta';
@@ -189,6 +201,7 @@ begin
      decena[7]:='setenta';
      decena[8]:='ochenta';
      decena[9]:='noventa';
+
      centena[0]:='cien';
      centena[1]:='ciento';
      centena[2]:='doscientos';
@@ -199,15 +212,16 @@ begin
      centena[7]:='setecientos';
      centena[8]:='ochocientos';
      centena[9]:='novecientos';
+
      milar[1]:='mil';
-     milar[1]:='dos mil';
-     milar[1]:='tres mil';
-     milar[1]:='cuatro mil';
-     milar[1]:='cinco mil';
-     milar[1]:='seis mil';
-     milar[1]:='siete mil';
-     milar[1]:='ocho mil';
-     milar[1]:='nueve mil';
+     milar[2]:='dos mil';
+     milar[3]:='tres mil';
+     milar[4]:='cuatro mil';
+     milar[5]:='cinco mil';
+     milar[6]:='seis mil';
+     milar[7]:='siete mil';
+     milar[8]:='ocho mil';
+     milar[9]:='nueve mil';
 
      entera:=trunc(NUM);
      divisor:=10;
@@ -219,8 +233,275 @@ begin
      decenas:=((entera)div 10) mod divisor;
      centenas:=((entera)div(100))mod divisor;
      milares:=(entera div 1000)mod divisor;
-     writeln(milares,centenas,decenas,unidades);
+
+     if milares=0 then begin
+          if centenas=0 then begin
+              if decenas=0 then begin
+                       final:=unidad[unidades];
+
+              end
+              else begin
+                    if decenas=1 then begin
+                            if (unidades>0) and (unidades<6) then begin
+                                  final:=espec[unidades];
+                            end
+                            else begin
+                                 if unidades=0 then begin
+                                      final:=decena[unidades];
+                                 end
+                                 else final:=decena[1]+unidad[unidades];
+                            end;
+                    end
+                    else begin
+                         if decenas=2 then begin
+                                 if unidades=0 then begin
+                                       final:=espec[6];
+                                 end
+                                 else begin
+                                 final:=decena[decenas]+unidad[unidades];
+                                 end;
+                         end
+                         else begin
+                                   if unidades=0 then begin
+                                           final:=decena[decenas];
+                                   end
+                                   else begin
+                                        final:=decena[decenas]+' y '+unidad[unidades];
+                                   end;
+                         end;
+                    end;
+
+              end;
+
+          end
+          else begin
+           if centenas=1 then begin
+                  if decenas=0 then begin
+                              if unidades=0 then begin
+                                           final:=centena[0];
+                              end
+                              else final:=centena[1]+' '+unidad[unidades];
+                  end
+                  else begin
+                            if decenas=1 then begin
+                                         if (unidades>0) and (unidades<6) then begin
+                                            final:=centena[1]+' '+espec[unidades];
+                                         end
+                                         else begin
+                                              if unidades=0 then begin
+                                              final:=centena[1]+' '+decena[unidades];
+                                              end
+                                              else final:=centena[1]+' '+decena[1]+unidad[unidades];
+                                              end;
+                                         end
+                            else begin
+                                 if decenas=2 then begin
+                                      if unidades=0 then begin
+                                       final:=centena[1]+' '+espec[6];
+                                       end
+                                     else begin
+                                      final:=centena[1]+' '+decena[decenas]+unidad[unidades];
+                                      end;
+                                 end
+                                 else begin
+                                     if unidades=0 then begin
+                                                 final:=centena[1]+' '+decena[decenas];
+                                     end
+                                     else begin
+                                             final:=centena[1]+' '+decena[decenas]+' y '+unidad[unidades];
+                                     end;
+                                 end;
+                             end;
+
+                  end;
+
+           end
+           else begin
+                   if decenas=0 then begin
+                              if unidades=0 then begin
+                                           final:=centena[centenas];
+                              end
+                              else final:=centena[centenas]+' '+unidad[unidades];
+                  end
+                  else begin
+                            if decenas=1 then begin
+                                         if (unidades>0) and (unidades<6) then begin
+                                            final:=centena[centenas]+' '+espec[unidades];
+                                         end
+                                         else begin
+                                              if unidades=0 then begin
+                                              final:=centena[centenas]+' '+decena[unidades];
+                                              end
+                                              else final:=centena[centenas]+' '+decena[1]+unidad[unidades];
+                                              end;
+                                         end
+                            else begin
+                                 if decenas=2 then begin
+                                      if unidades=0 then begin
+                                       final:=centena[centenas]+' '+espec[6];
+                                       end
+                                     else begin
+                                      final:=centena[centenas]+' '+decena[decenas]+unidad[unidades];
+                                      end;
+                                 end
+                                 else begin
+                                     if unidades=0 then begin
+                                                 final:=centena[centenas]+' '+decena[decenas];
+                                     end
+                                     else begin
+                                             final:=centena[centenas]+' '+decena[decenas]+' y '+unidad[unidades];
+                                     end;
+                                 end;
+                             end;
+
+                  end;
+
+           end;
+
+          end;
+
+
+     end
+     else begin
+
+          if centenas=0 then begin
+                        if decenas=0 then begin
+                                     if unidades=0 then begin
+                                        final:=milar[milares];
+                                     end
+                                     else begin
+                                          final:=milar[milares]+' '+unidad[unidades];
+                                     end;
+                        end
+                        else begin
+                                     if decenas=1 then begin
+                                         if (unidades>0) and (unidades<6) then begin
+                                            final:=milar[milares]+' '+espec[unidades];
+                                         end
+                                         else begin
+                                              if unidades=0 then begin
+                                              final:=milar[milares]+' '+decena[unidades];
+                                              end
+                                              else final:=milar[milares]+' '+decena[1]+unidad[unidades];
+                                              end;
+                                         end
+                                     else begin
+                                          if decenas=2 then begin
+                                             if unidades=0 then begin
+                                                final:=milar[milares]+' '+espec[6];
+                                             end
+                                             else begin
+                                               final:=milar[milares]+' '+decena[decenas]+unidad[unidades];
+                                             end;
+                                          end
+                                          else begin
+                                                    if unidades=0 then begin
+                                                    final:=milar[milares]+' '+decena[decenas];
+                                                    end
+                                                    else begin
+                                                    final:=milar[milares]+' '+decena[decenas]+' y '+unidad[unidades];
+                                                    end;
+                                          end;
+                                     end;
+                        end;
+          end
+          else begin
+
+                                         if centenas=1 then begin
+                                            if decenas=0 then begin
+                                               if unidades=0 then begin
+                                                  final:=milar[milares]+' '+centena[0];
+                              end
+                              else final:=milar[milares]+' '+centena[1]+' '+unidad[unidades];
+                  end
+                  else begin
+                            if decenas=1 then begin
+                                         if (unidades>0) and (unidades<6) then begin
+                                            final:=milar[milares]+' '+centena[1]+' '+espec[unidades];
+                                         end
+                                         else begin
+                                              if unidades=0 then begin
+                                              final:=milar[milares]+' '+centena[1]+' '+decena[unidades];
+                                              end
+                                              else final:=milar[milares]+' '+centena[1]+' '+decena[1]+unidad[unidades];
+                                              end;
+                                         end
+                            else begin
+                                 if decenas=2 then begin
+                                      if unidades=0 then begin
+                                       final:=milar[milares]+' '+centena[1]+' '+espec[6];
+                                       end
+                                     else begin
+                                      final:=milar[milares]+' '+centena[1]+' '+decena[decenas]+unidad[unidades];
+                                      end;
+                                 end
+                                 else begin
+                                     if unidades=0 then begin
+                                                 final:=milar[milares]+' '+centena[1]+' '+decena[decenas];
+                                     end
+                                     else begin
+                                             final:=milar[milares]+' '+centena[1]+' '+decena[decenas]+' y '+unidad[unidades];
+                                     end;
+                                 end;
+                             end;
+
+                  end;
+
+           end
+           else begin
+                   if decenas=0 then begin
+                              if unidades=0 then begin
+                                           final:=milar[milares]+' '+centena[centenas];
+                              end
+                              else final:=milar[milares]+' '+centena[centenas]+' '+unidad[unidades];
+                  end
+                  else begin
+                            if decenas=1 then begin
+                                         if (unidades>0) and (unidades<6) then begin
+                                            final:=milar[milares]+' '+centena[centenas]+' '+espec[unidades];
+                                         end
+                                         else begin
+                                              if unidades=0 then begin
+                                              final:=milar[milares]+' '+centena[centenas]+' '+decena[unidades];
+                                              end
+                                              else final:=milar[milares]+' '+centena[centenas]+' '+decena[1]+unidad[unidades];
+                                              end;
+                                         end
+                            else begin
+                                 if decenas=2 then begin
+                                      if unidades=0 then begin
+                                       final:=milar[milares]+' '+centena[centenas]+' '+espec[6];
+                                       end
+                                     else begin
+                                      final:=milar[milares]+' '+centena[centenas]+' '+decena[decenas]+unidad[unidades];
+                                      end;
+                                 end
+                                 else begin
+                                     if unidades=0 then begin
+                                                 final:=milar[milares]+' '+centena[centenas]+' '+decena[decenas];
+                                     end
+                                     else begin
+                                             final:=milar[milares]+' '+centena[centenas]+' '+decena[decenas]+' y '+unidad[unidades];
+                                     end;
+                                 end;
+                             end;
+
+                  end;
+
+           end;
+
+
+
+
+          end;
+
+     end;
+
+
+
+  writeln(final);
 end;
+
 
  procedure CodigoDeBarras;
  var Transf:array[1..9] of integer;
