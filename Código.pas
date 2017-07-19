@@ -504,7 +504,7 @@ end;
 
 
  procedure CodigoDeBarras;
- var codi:array[1..8] of integer;
+   var codi:array[1..8] of integer;
     CDB:array[1..8] of string;
      cod,apor,cdb1,CB:string ;
      i,num,x,a,b,DV,C,CDBF,g:integer;
@@ -537,26 +537,28 @@ end;
         for i:=1 to 8 do
         begin
         case CB[i] of
-           '1':CDB[i]:='0001';
-           '2':CDB[i]:='0010';
-           '3':CDB[i]:='0011';
-           '4':CDB[i]:='0100';
-           '5':CDB[i]:='0101';
-           '6':CDB[i]:='0110';
-           '7':CDB[i]:='0111';
-           '8':CDB[i]:='1000';
-           '9':CDB[i]:='1001';
+           '1':CDB[i]:='***I';
+           '2':CDB[i]:='**I*';
+           '3':CDB[i]:='**II';
+           '4':CDB[i]:='*I**';
+           '5':CDB[i]:='*I*I';
+           '6':CDB[i]:='*II*';
+           '7':CDB[i]:='*III';
+           '8':CDB[i]:='I***';
+           '9':CDB[i]:='I**I';
            end;
         end;
 
 
 
 
-        writeln(Codi[1],Codi[2],Codi[3],Codi[4],Codi[5],Codi[6],Codi[7],Codi[8]);
-        writeln(CDB[1],CDB[2],CDB[3],CDB[4],CDB[5],CDB[6],CDB[7],CDB[8]);
 
-    end;
-  end;
+
+       writeln(CB);
+        writeln(CDB[1]+CDB[2]+CDB[3]+CDB[4]+CDB[5]+CDB[6]+CDB[7]+CDB[8]);
+        end;
+
+
 
 
 
@@ -569,27 +571,24 @@ begin
      writeln('2-Calculos');
      writeln('3-Codigo de Barras/QR');
      writeln('4-Fin');
-
      readln(OP);
-          case OP of
-                1:Juegos;
+     case OP of 1:Juegos;
                 2: begin
                 writeln('Ingrese un numero real entre 0 y 9999');
                 readln(NUM);
                 pesos(NUM);
-
+                end;
 
                 end;
                 3:CodigoDeBarras;
-                end;
 
 
 
      Readkey;
 
-
-
 end.
+
+
 
 
 
