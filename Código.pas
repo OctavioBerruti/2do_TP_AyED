@@ -598,7 +598,6 @@ begin
                 readln(cadenadeprueba);
                 val(cadenadeprueba,NUM,OP);
                 pesos(NUM,cadenadeprueba);
-                end
                 end;
                 3:CodigoDeBarras;
 
