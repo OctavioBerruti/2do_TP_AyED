@@ -557,6 +557,7 @@ end;
         for i:=1 to 8 do
         begin
         case CB[i] of
+           '0':CDB[i]:='****';
            '1':CDB[i]:='***I';
            '2':CDB[i]:='**I*';
            '3':CDB[i]:='**II';
@@ -577,6 +578,7 @@ end;
        writeln(CB);
         writeln(CDB[1]+CDB[2]+CDB[3]+CDB[4]+CDB[5]+CDB[6]+CDB[7]+CDB[8]);
         end;
+
 
 
 
