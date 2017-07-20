@@ -31,7 +31,6 @@ begin
   writeln('Ingrese una palabra de maximo 10  caracteres o ingrese "/" para finalizar');
  while (caracteres<>'/') and (i<>11) do
    begin
-
    caracteres:=readkey;
    clrscr;
    for p:=1 to i  do write('*');
@@ -162,7 +161,7 @@ begin
 
 end;
 
-function pesos(NUM: real) : string ;
+procedure pesos(NUM: real; cadenadeprueba:string);
 var unidades, decenas, centenas, milares,entera : integer;
     divisor:integer;
     unidad: array[0..9] of string;
@@ -170,6 +169,9 @@ var unidades, decenas, centenas, milares,entera : integer;
     centena: array[0..9] of string;
     milar: array[1..9] of string;
     espec: array[1..6] of string;
+    decimal: integer;
+    decimalstr:string;
+    acumulador,aux1:integer;
     final: string;
 begin
      unidad[0]:='cero';
@@ -225,10 +227,13 @@ begin
 
      entera:=trunc(NUM);
      divisor:=10;
+     decimal:=0;
      unidades:=0;
      decenas:=0;
      centenas:=0;
      milares:=0;
+     acumulador:=0;
+     aux1:=1;
      unidades:=entera mod divisor;
      decenas:=((entera)div 10) mod divisor;
      centenas:=((entera)div(100))mod divisor;
@@ -497,10 +502,25 @@ begin
 
      end;
 
+     if (NUM-entera)<>0 then begin
+     acumulador:=length(cadenadeprueba);
+      repeat  begin
+       decimal:=decimal+1;
+       end
+      until cadenadeprueba[decimal]='.';
+       repeat  begin
+       decimalstr:=decimalstr+cadenadeprueba[decimal+1];
+       decimal:=decimal+1;
+       aux1:=aux1*10;
+       end
+      until decimal=acumulador;
 
+     end;
 
-  writeln(final);
+  writeln(final,' con ',decimalstr,'/',aux1);
 end;
+
+
 
 
  procedure CodigoDeBarras;
@@ -575,10 +595,10 @@ begin
      case OP of 1:Juegos;
                 2: begin
                 writeln('Ingrese un numero real entre 0 y 9999');
-                readln(NUM);
-                pesos(NUM);
-                end;
-
+                readln(cadenadeprueba);
+                val(cadenadeprueba,NUM,OP);
+                pesos(NUM,cadenadeprueba);
+                end
                 end;
                 3:CodigoDeBarras;
 
