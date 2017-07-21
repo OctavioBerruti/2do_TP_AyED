@@ -514,10 +514,10 @@ begin
        aux1:=aux1*10;
        end
       until decimal=acumulador;
-
-     end;
-
   writeln(final,' con ',decimalstr,'/',aux1);
+     end
+    else writeln(final);
+
 end;
 
 
