@@ -1,10 +1,10 @@
 (*Comision 1°02 - Berruti Octavio, Navarini Alejandro, Piqué Gabriel*) 
-
 program TpN2AyED(input,output);
 uses crt;
 var OP:integer;
     c:char;
     NUM:real;
+    cadenadeprueba:string;
 
 
 procedure Juegos;
@@ -131,7 +131,42 @@ begin
 
            end;
             end
-            else writeln('ya ingresaste esa letra');
+            else begin
+
+             writeln('ya ingresaste esa letra');
+            if o=1 then writeln(muneco[1]);
+           if o=2 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           end;
+           if o=3 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           write(muneco[4]);
+           end;
+           if o=4 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           write(muneco[4]);
+           writeln(muneco[3]);
+           end;
+           if o=5 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           write(muneco[4]);
+           writeln(muneco[3]);
+           write(muneco[5]);
+           end;
+            if o=6 then begin
+           writeln(muneco[1]);
+           write(muneco[2]);
+           write(muneco[4]);
+           writeln(muneco[3]);
+           write(muneco[5]);
+           write(muneco[6]);
+           end;
+
+           end;
            acierto:=0;
            ingreso:=0;
            writeln();
@@ -157,8 +192,10 @@ begin
          end
          end;
 
- end
-
+ end;
+  writeln('Presiona una tecla para volver al menu');
+           Readkey;
+           clrscr;
 end;
 
 procedure pesos(NUM: real; cadenadeprueba:string);
@@ -514,80 +551,116 @@ begin
        aux1:=aux1*10;
        end
       until decimal=acumulador;
-  writeln(final,' con ',decimalstr,'/',aux1);
+       writeln(final,' con ',decimalstr,'/',aux1);
      end
     else writeln(final);
+    writeln('Presiona una tecla para volver al menu');
+           Readkey;
+           clrscr;
 
 end;
 
-
-
-
- procedure CodigoDeBarras;
-   var codi:array[1..8] of integer;
-    CDB:array[1..8] of string;
-     cod,apor,cdb1,CB:string ;
-     i,num,x,a,b,DV,C,CDBF,g:integer;
-     Co:real;
+     procedure CodigoDeBarras;
+   var pares:array[1..3] of integer;
+   impares:array[1..4] of integer;
+     cod,apor,cdb1:string ;
+     i:integer;
+       quiere:char;
+     largoo,tot,totpares,totimpares:integer;
+     aux:integer;
+     convertidoabinario:string;
+     numeros:array[1..8] of integer;
    begin
+   clrscr;
    i:=0;
+   largoo:=0;
+    aux:=0;
+    tot:=0;
+    totpares:=0;
+    totimpares:=0;
    writeln('Ingrese Codigo Unico de 3 cifras de su Empresa');
     readln(cod);
-    writeln('Ingrese Aporte de 4 cifras, fin de datos /');
-    while apor<>'/' do
-    begin
+    quiere:='a';
+    repeat
+    writeln('Ingrese Aporte de 4 cifras');
+    apor:='';
     readln(apor);
-    cdb1:=cod+apor;
-        val(cdb1,num,x);
-        codi[1]:=TRUNC(num/1000000);
-        codi[2]:=TRUNC(num/100000)-codi[1]*10;
-        codi[3]:=TRUNC(num/10000)-codi[1]*100-codi[2]*10;
-        codi[4]:=TRUNC(num/1000)-codi[1]*1000-codi[2]*100-codi[3]*10;
-        codi[5]:=TRUNC(num/100)-codi[1]*10000-codi[2]*1000-codi[3]*100-codi[4]*10;
-        codi[6]:=TRUNC(num/10)-codi[1]*100000-codi[2]*10000-codi[3]*1000-codi[4]*100-codi[5]*10;
-        codi[7]:=TRUNC(num/1)-codi[1]*1000000-codi[2]*100000-codi[3]*10000-codi[4]*1000-codi[5]*100-codi[6]*10;
+      largoo:=length(apor);
+      if largoo=1 then apor:='0'+'0'+'0'+apor
+      else begin
+           if largoo=2 then  apor:='0'+'0'+apor
+              else begin
+                  if largoo=3 then  apor:='0'+apor;
+              end;
+      end;
+      cdb1:=cod+apor;
+          val(cdb1[2],pares[1],aux);
+          val(cdb1[4],pares[2],aux);
+          val(cdb1[6],pares[3],aux);
 
-        a:=codi[2]+codi[4]+codi[6];
-        b:=codi[1]+codi[3]+codi[5]+codi[7];
-        C:=a-b;
-        DV:=(ABS(C) MOD 10);
-        codi[8]:=DV;
-        CDBF:=(num*10)+DV;
-        Str(CDBF,CB);
-        for i:=1 to 8 do
-        begin
-        case CB[i] of
-           '0':CDB[i]:='****';
-           '1':CDB[i]:='***I';
-           '2':CDB[i]:='**I*';
-           '3':CDB[i]:='**II';
-           '4':CDB[i]:='*I**';
-           '5':CDB[i]:='*I*I';
-           '6':CDB[i]:='*II*';
-           '7':CDB[i]:='*III';
-           '8':CDB[i]:='I***';
-           '9':CDB[i]:='I**I';
+          val(cdb1[1],impares[1],aux);
+          val(cdb1[3],impares[2],aux);
+          val(cdb1[5],impares[3],aux);
+          val(cdb1[7],impares[4],aux);
+
+          totpares:=pares[1]+pares[2]+pares[3];
+          totimpares:=impares[1]+impares[2]+impares[3]+impares[4];
+          tot:=(ABS(totpares-totimpares)) DIV 10;
+          convertidoabinario:='';
+
+          for i:=1 to 7 do val(cdb1[i],numeros[i],aux);
+
+
+
+
+          for i:=1 to 7 do begin
+            case numeros[i] of
+           0:convertidoabinario:=convertidoabinario+'****';
+           1:convertidoabinario:=convertidoabinario+'***|';
+           2:convertidoabinario:=convertidoabinario+'**|*';
+           3:convertidoabinario:=convertidoabinario+'**||';
+           4:convertidoabinario:=convertidoabinario+'*|**';
+           5:convertidoabinario:=convertidoabinario+'*|*|';
+           6:convertidoabinario:=convertidoabinario+'*||*';
+           7:convertidoabinario:=convertidoabinario+'*|||';
+           8:convertidoabinario:=convertidoabinario+'|***';
+           9:convertidoabinario:=convertidoabinario+'|**|';
            end;
-        end;
+          end;
 
 
 
+            case tot of
+            0:convertidoabinario:=convertidoabinario+'****';
+           1:convertidoabinario:=convertidoabinario+'***|';
+           2:convertidoabinario:=convertidoabinario+'**|*';
+           3:convertidoabinario:=convertidoabinario+'**||';
+           4:convertidoabinario:=convertidoabinario+'*|**';
+           5:convertidoabinario:=convertidoabinario+'*|*|';
+           6:convertidoabinario:=convertidoabinario+'*||*';
+           7:convertidoabinario:=convertidoabinario+'*|||';
+           8:convertidoabinario:=convertidoabinario+'|***';
+           9:convertidoabinario:=convertidoabinario+'|**|';
+           end;
 
 
+        writeln(convertidoabinario);
+            writeln('Quiere ingresar otro aporte? s/n');
+           readln(quiere);
+           clrscr;
 
-       writeln(CB);
-        writeln(CDB[1]+CDB[2]+CDB[3]+CDB[4]+CDB[5]+CDB[6]+CDB[7]+CDB[8]);
-        end;
-
-
-
-
-
+          until quiere='n';
+           writeln('Presiona una tecla para volver al menu');
+           Readkey;
+           clrscr;
+         end;
 
 
 begin
      OP:=0;
      NUM:=0;
+     while OP<>4 do begin
+     clrscr;
      writeln('Menu De Opciones');
      writeln('1-Juegos');
      writeln('2-Calculos');
@@ -596,22 +669,16 @@ begin
      readln(OP);
      case OP of 1:Juegos;
                 2: begin
+                clrscr;
                 writeln('Ingrese un numero real entre 0 y 9999');
                 readln(cadenadeprueba);
                 val(cadenadeprueba,NUM,OP);
                 pesos(NUM,cadenadeprueba);
                 end;
                 3:CodigoDeBarras;
-
-
-
-     Readkey;
-
+                end ;
+     end;
 end.
-
-
-
-
 
 
 
